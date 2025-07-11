@@ -191,4 +191,4 @@ def generate_search_prompt(topic: str, num_papers: int = 5) -> str:
 
 if __name__ == "__main__":
     # Initialize and run the server with host binding for Render.com
-    mcp.run(transport='sse', host='0.0.0.0')
+    mcp.run(transport='sse')
