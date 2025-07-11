@@ -60,7 +60,7 @@ python-dotenv==1.1.1
     # via pydantic-settings
 python-multipart==0.0.20
     # via mcp
-pywin32==310
+    pywin32; sys_platform == 'win32'
     # via mcp
 referencing==0.36.2
     # via
