@@ -6,8 +6,11 @@ from mcp.server.fastmcp import FastMCP
 
 PAPER_DIR = "papers"
 
-# Initialize FastMCP server
-mcp = FastMCP("research", port=8001)
+# Get port from environment variable (Render.com requirement)
+port = int(os.environ.get("PORT", 8001))
+
+# Initialize FastMCP server with environment port
+mcp = FastMCP("research", port=port)
 
 @mcp.tool()
 def search_papers(topic: str, max_results: int = 5) -> List[str]:
@@ -95,8 +98,6 @@ def extract_info(paper_id: str) -> str:
                     continue
 
     return f"There's no saved information related to paper {paper_id}."
-
-
 
 @mcp.resource("papers://folders")
 def get_available_folders() -> str:
@@ -189,5 +190,5 @@ def generate_search_prompt(topic: str, num_papers: int = 5) -> str:
     Please present both detailed information about each paper and a high-level synthesis of the research landscape in {topic}."""
 
 if __name__ == "__main__":
-    # Initialize and run the server
-    mcp.run(transport='sse')
+    # Initialize and run the server with host binding for Render.com
+    mcp.run(transport='sse', host='0.0.0.0')
