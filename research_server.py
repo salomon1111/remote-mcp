@@ -10,7 +10,7 @@ PAPER_DIR = "papers"
 ##port = int(os.environ.get("PORT", 8001))
 
 # Initialize FastMCP server with environment port
-mcp = FastMCP("research", 10000)
+mcp = FastMCP("research", port=10000)
 
 @mcp.tool()
 def search_papers(topic: str, max_results: int = 5) -> List[str]:
